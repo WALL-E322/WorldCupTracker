@@ -1,0 +1,31 @@
+<ng-container *ngFor="let group of groupedTeams; index as index">
+  <div class="container m-4">
+    <h1>Group {{ group[0].group }}</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Team</th>
+          <th scope="col">Played</th>
+          <th scope="col">GD</th>
+          <th scope="col">Points</th>
+          <th scope></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let team of group">
+          <tr>
+            <td class="d-flex">
+              <div class="mini-flag">
+                <img src="{{ team.flag }}" alt="flag" />
+              </div>
+              {{ team.enName }}
+            </td>
+            <td class="played">{{ getPlayedGames(team) }}</td>
+            <td class="GD">{{ getGoalDifference(team) }}</td>
+            <td class="points">{{ getPoints(team) }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</ng-container>

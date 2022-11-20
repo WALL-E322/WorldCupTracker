@@ -1,0 +1,66 @@
+<div class="container">
+  <h1 class="title">Worldcup</h1>
+  <div class="header">
+    <div class="row upcoming-game">
+      <div class="team-info col-3 ml-4">
+        <img class="flag" src="{{ upcomingMatch.teamA!.flag }}" alt="flag" />
+        {{ upcomingMatch.teamA!.enName }}
+      </div>
+      <div class="match-info col-6">
+        <div
+          class="not-played"
+          *ngIf="getMatchInfoState(upcomingMatch.matchDate) == '1'"
+        >
+          <span class="line">{{
+            upcomingMatch.matchDate | date: "EEEE":"-210"
+          }}</span>
+          <span>{{ upcomingMatch.matchDate | slice: 11:16 }}</span>
+        </div>
+        <div
+          class="ongoing"
+          *ngIf="getMatchInfoState(upcomingMatch.matchDate) == '2'"
+        >
+          Watch Live
+        </div>
+      </div>
+      <div class="team-info col-3">
+        {{ upcomingMatch.teamB!.enName }}
+        <img class="flag" src="{{ upcomingMatch.teamB!.flag }}" alt="flag" />
+      </div>
+    </div>
+    <div class="countdown-container">
+      <div class="countdown-item">
+        <div class="circle">{{ days }}</div>
+        <span>Days</span>
+      </div>
+      <div class="countdown-item">
+        <div class="circle">{{ hours }}</div>
+        <span>Hours</span>
+      </div>
+      <div class="countdown-item">
+        <div class="circle">{{ mins }}</div>
+        <span>Mins</span>
+      </div>
+      <div class="countdown-item">
+        <div class="circle">{{ secs }}</div>
+        <span>Seconds</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-section">
+    <div class="row">
+      <div class="col-6">
+        <a routerLink="/schedule"><img src="assets/schedule.png" alt="" /></a>
+      </div>
+      <div class="col-6">
+        <a routerLink="/groups"><img src="assets/groups.jpg" alt="" /></a>
+      </div>
+    </div>
+    <div class="row mt-4 mb-4">
+      <a href="https://www.varzesh3.com/football/world-cup/qatar-2022"
+        ><img src="assets/news.png" alt=""
+      /></a>
+    </div>
+  </div>
+</div>

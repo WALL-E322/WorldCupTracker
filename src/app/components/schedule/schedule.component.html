@@ -1,0 +1,62 @@
+<div class="container">
+  <h1>Games Schedule</h1>
+
+  <mat-tab-group>
+    <ng-container *ngFor="let day of days">
+      <mat-tab
+        [label]="getTabTitle(day)"
+        mat-stretch-tabs="false"
+        mat-align-tabs="start"
+        class="mb-4"
+      >
+        <ng-container *ngFor="let match of matches">
+          <ng-container *ngIf="match.teamA != null && match.teamB != null">
+            <ng-container *ngIf="checkDate(match.matchDate, day)">
+              <div
+                class="row mt-4 mb-4"
+                [ngStyle]="{
+                  background: getBorderColor(
+                    match.teamA.color,
+                    match.teamB.color
+                  )
+                }"
+              >
+                <div class="team-info col-3">
+                  <img class="flag" src="{{ match.teamA.flag }}" alt="flag" />
+                  {{ match.teamA.enName }}
+                </div>
+                <div class="match-info col-6">
+                  <div class="finished" *ngIf="match.status == 'finished'">
+                    <span class="line">Final Result </span>
+                    <span>{{ match.teamAScore }} - {{ match.teamBScore }}</span>
+                  </div>
+                  <ng-container *ngIf="match.status == 'new'">
+                    <div
+                      class="not-played"
+                      *ngIf="getMatchInfoState(match.matchDate) == '1'"
+                    >
+                      <span class="line">{{
+                        match.matchDate | date: "EEEE":"-210"
+                      }}</span>
+                      <span>{{ match.matchDate | slice: 11:16 }}</span>
+                    </div>
+                    <div
+                      class="ongoing"
+                      *ngIf="getMatchInfoState(match.matchDate) == '2'"
+                    >
+                      Watch Live
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="team-info col-3">
+                  {{ match.teamB.enName }}
+                  <img class="flag" src="{{ match.teamB.flag }}" alt="flag" />
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+</div>
