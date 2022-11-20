@@ -1,5 +1,5 @@
 # Worldcup
-This is a application  providing all the information you need fot the 2022 worldcup
+This is a simple application  providing all the information you need fot the 2022 worldcup
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
 
